@@ -19,10 +19,8 @@ def count_words_from_file(text_from_file: str) -> dict:
     frequency = {}
     read_file = read_text_file()
     for line in read_file:
-            line = line.translate(str.maketrans('', '', string.punctuation))
-            for word in line.split():
-                if word in frequency:
-                    frequency[word] += 1
-                else:
-                    frequency[word] = 1
+        line = line.translate(str.maketrans('', '', string.punctuation))
+        words = line.split()
+        frequency = {word: frequency.get(word, 0) + 1 for word in words}
+    
     return dict(sorted(frequency.items()))
